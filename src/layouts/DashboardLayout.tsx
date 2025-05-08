@@ -83,10 +83,10 @@ export function DashboardLayoutWrapper() {
   // }
 
   return (
-      <div className="max-h-screen overflow-auto lg:overflow-hidden">
+     
     <DashboardLayout user={user as AuthUser} >
         <Outlet />
     </DashboardLayout>
-      </div>
+     
   );
 }

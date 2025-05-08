@@ -9,3 +9,4 @@ export { default as Schedule } from "./admin/schedule";
 export { default as SosAlerts } from "./admin/sos-alerts";
 export { default as Announcements } from "./admin/announcements";
 export { default as ZonesLocations } from "./admin/zones-locations";
+export { default as Audios } from "./admin/audios";

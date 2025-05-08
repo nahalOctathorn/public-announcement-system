@@ -13,7 +13,8 @@ export const ADMIN_ROUTES = {
   SCHEDULE: "/schedule",
   SOS_ALERTS: "/sos-alerts",
   ANNOUNCEMENTS: "/announcements",
-  ZONES_LOCATIONS: "/zones-locations",
+  ZONES_LOCATIONS: "/zones",
+  AUDIOS: "/audios",
 } as const;
 export type AdminRoute = keyof typeof ADMIN_ROUTES;
 export const COMMON_ROUTES = {

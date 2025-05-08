@@ -23,6 +23,7 @@ import {
 } from "@/layouts";
 import { PrivateRoute, PublicRoute } from "@/routes";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import Audios from "./pages/admin/audios";
 
 const appRouter = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const appRouter = createBrowserRouter([
               {
                 path: ADMIN_ROUTES.ZONES_LOCATIONS,
                 element: <ZonesLocations />,
+              },
+              {
+                path: ADMIN_ROUTES.AUDIOS,
+                element: <Audios />,
               },
             ],
           },

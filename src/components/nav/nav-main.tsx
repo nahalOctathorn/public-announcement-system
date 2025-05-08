@@ -1,4 +1,4 @@
-import { CalendarCheck2, MapPin, Radio, Siren, Smartphone } from "lucide-react";
+import { CalendarCheck2, MapPin, Play, Radio, Siren, Smartphone } from "lucide-react";
 
 import {
   SidebarGroup,
@@ -59,6 +59,11 @@ const navItems: {
     title: "Zones / Locations",
     urls: [ADMIN_ROUTES.ZONES_LOCATIONS],
     icon: MapPin,
+  },
+  {
+    title: "Audios",
+    urls: [ADMIN_ROUTES.AUDIOS],
+    icon: Play,
   },
 
   ];
