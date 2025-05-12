@@ -12,18 +12,25 @@ type TableExtraProps = {
 
 };
 
-export default function Announcements() {
+export default function Prayers() {
     const { user } = useAuth();
 
     // if (!user) return <Navigate to={PUBLIC_ROUTES.LOGIN} replace />;
 
     // const currentUserLevel = user.level;
+
     return (
         <PageInnerLayout Header={<Header />}>
             <TableHandler<any, any, any, TableExtraProps>
                 queryKey="announcements"
-                queryFn={(params) => fetchAnnouncements(params)}
-
+                queryFn={async (params) => {
+                    const data = await fetchAnnouncements(params);
+                    return {
+                        ...data,
+                        data: data.data.filter((item: any) => item.type === "PRAYER"),
+                    };
+                    
+                }}
                 TableComponent={AnnouncementTable}
                 FormComponent={DeviceForm}
                 initialPage={1}

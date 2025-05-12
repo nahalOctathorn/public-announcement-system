@@ -44,7 +44,6 @@ const handleDelete = (DeviceId: number) => {
   const handleEdit = (DeviceId: number) => {
     setItemAction({ itemName: "Device", id: DeviceId, action: "edit" });
   };
-
   return (
     <CardTable<Device>
       loading={loading}

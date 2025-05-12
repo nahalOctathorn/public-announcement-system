@@ -20,8 +20,8 @@ export const columns = (
     header: 'DURATION',
   },
   {
-    accessorKey: 'mimType',
-    header: 'MIM TYPE',
+    accessorKey: 'mimeType',
+    header: 'MIME TYPE',
   },
   {
     header: "ACTIONS",

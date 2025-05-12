@@ -12,11 +12,11 @@ export const columns = (
   // extraActions: (Device: Device) => ReactNode
 ): ColumnDef<Device>[] => [
   {
-    accessorKey: 'name',
+    accessorKey: 'label',
     header: 'NAME',
   },
   {
-    accessorKey: 'zone',
+    accessorKey: 'zone.name',
     header: 'ZONE/LOCATION',
   },
   {
@@ -38,7 +38,7 @@ export const columns = (
               setStatus(newStatus);
   
               // You can call your API/mutation here
-              console.log(`Status for ${row.original.name}: ${newStatus}`);
+              console.log(`Status for ${newStatus}`);
             }}
           />
         </div>

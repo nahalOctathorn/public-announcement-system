@@ -1,4 +1,4 @@
-import { User } from "./user.type";
+import { Zone } from "./zone.type";
 
 export enum DeviceStatus {
   ONLINE = "online",
@@ -7,36 +7,10 @@ export enum DeviceStatus {
 
 export type Device = {
   id: number;
-  name: string;
-  zone: string;
+  label: string;
+  deviceId: string;
   status: DeviceStatus;
+  zone: Zone,
+  createdAt: string;
+  updatedAt: string;
 };
-
-// export type DeviceData = Omit<Device, "id" | "createdAt" | "updatedAt"> & {
-// };
-
-// export type DeviceDetail = {
-//   id: number;
-//   sn: string;
-//   patentName: string;
-//   level?: string;
-//   allTime?: string;
-//   endTime?: string;
-//   useTime?: string;
-//   modeType?: string;
-//   timeZone?: string;
-//   levelLogs?: string;
-//   modeIndex?: string;
-//   startTime?: string;
-//   deviceName?: string;
-//   mobileInfo?: string;
-// };
-
-// export type DeviceDetailData = {
-//   id: number;
-//   data: Omit<DeviceDetail, "id">;
-//   filename: string;
-//   serial: string;
-//   timeStamps: string;
-//   device?: Device;
-// };

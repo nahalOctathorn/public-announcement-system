@@ -18,13 +18,13 @@ interface DashboardLayoutProps {
 
 const ROUTE_TITLES: Record<string, string> = {
   [ADMIN_ROUTES.DASHBOARD]: "Dashboard",
-  [ADMIN_ROUTES.DEVICES]:"Devices",
+  [ADMIN_ROUTES.DEVICES]: "Devices",
   [ADMIN_ROUTES.SOS_ALERTS]: "SOS Alerts",
-  [ADMIN_ROUTES.ZONES_LOCATIONS]:"Zones / Locations",
-  [ADMIN_ROUTES.SCHEDULE]:"Schedule",
-  [ADMIN_ROUTES.ANNOUNCEMENTS]:"Announcement",
-
-  
+  [ADMIN_ROUTES.ZONES_LOCATIONS]: "Zones / Locations",
+  [ADMIN_ROUTES.SCHEDULE]: "Schedule",
+  [ADMIN_ROUTES.ANNOUNCEMENTS]: "Announcements",
+  [ADMIN_ROUTES.AUDIOS]: "Audios",
+  [ADMIN_ROUTES.Prayer]: "Prayer",
 };
 
 export default function DashboardLayout({
@@ -83,10 +83,10 @@ export function DashboardLayoutWrapper() {
   // }
 
   return (
-     
+
     <DashboardLayout user={user as AuthUser} >
-        <Outlet />
+      <Outlet />
     </DashboardLayout>
-     
+
   );
 }

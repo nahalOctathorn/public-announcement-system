@@ -52,26 +52,16 @@ export function AudioForm({
             name: "duration",
             label: "Audio Duration",
             placeholder: "Alpha",
-            type: "select",
+            type: "text",
             required: true,
-            className: "w-full",
-            options: [
-                { label: "Alpha 1", value: "alpha-1" },
-                { label: "Alpha 2", value: "alpha-2" },
-            ],
         },
         {
             id: "mimeType",
             name: "mimeType",
             label: "Audio Mime Type",
             placeholder: "Alpha",
-            type: "select",
+            type: "text",
             required: true,
-            className: "w-full",
-            options: [
-                { label: "Alpha 1", value: "alpha-1" },
-                { label: "Alpha 2", value: "alpha-2" },
-            ],
         },
     ];
 

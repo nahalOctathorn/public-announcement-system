@@ -15,6 +15,8 @@ export const ADMIN_ROUTES = {
   ANNOUNCEMENTS: "/announcements",
   ZONES_LOCATIONS: "/zones",
   AUDIOS: "/audios",
+  Prayer: "/Prayer",
+
 } as const;
 export type AdminRoute = keyof typeof ADMIN_ROUTES;
 export const COMMON_ROUTES = {

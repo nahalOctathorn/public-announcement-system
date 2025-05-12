@@ -14,7 +14,9 @@ import {
   SosAlerts,
   Announcements,
   ZonesLocations,
+  Audios,
   NotFound,
+  Prayer,
 } from "@/pages";
 import {
   MainLayout,
@@ -23,7 +25,6 @@ import {
 } from "@/layouts";
 import { PrivateRoute, PublicRoute } from "@/routes";
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Audios from "./pages/admin/audios";
 
 const appRouter = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ const appRouter = createBrowserRouter([
               {
                 path: ADMIN_ROUTES.AUDIOS,
                 element: <Audios />,
+              },
+              {
+                path: ADMIN_ROUTES.Prayer,
+                element: <Prayer />,
               },
             ],
           },

@@ -1,5 +1,6 @@
-  export type Zone = {
-    id: number;
-    name: string;
-    location: string;
-  };
+export type Zone = {
+  id: number;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}

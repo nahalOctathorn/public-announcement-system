@@ -10,17 +10,17 @@ import { Device, DeviceStatus } from "@/@types/device.type";
 import { FormBaseProps } from "@/components/form-handler";
 import { MessageResponse } from "@/@types/general.type";
 
-export const DeviceSchema = z.object({
-  name: z.string().min(1, {
-    message: "name is required.",
-  }),
-  zone: z.string().min(1, {
-    message: "zone is required.",
-  }),
-  status: z.nativeEnum(DeviceStatus, {
-    errorMap: () => ({ message: "Invalid device status." }),
-  }),
-});
+// export const DeviceSchema = z.object({
+//   name: z.string().min(1, {
+//     message: "name is required.",
+//   }),
+//   zone: z.string().min(1, {
+//     message: "zone is required.",
+//   }),
+//   status: z.nativeEnum(DeviceStatus, {
+//     errorMap: () => ({ message: "Invalid device status." }),
+//   }),
+// });
 
 type DeviceFormProps = FormBaseProps<any, Device> & {
   open: boolean;
@@ -38,10 +38,11 @@ export function DeviceForm({
   values,
   isEditMode = false,
 }: DeviceFormProps) {
+  console.log("DeviceForm", values);
   const fields: FieldConfig[] = [
     {
-      id: "name",
-      name: "name",
+      id: "label",
+      name: "label",
       label: "Device Name",
       placeholder: "12312",
       type: "text",
@@ -49,15 +50,16 @@ export function DeviceForm({
     },
     {
       id: "zone",
-      name: "zone",
+      name: "zone.name",
       label: "Zone / Location",
       placeholder: "Alpha",
       type: "select",
       required: true,
       className: "w-full",
       options: [
-        { label: "Alpha 1", value: "alpha-1" },
-        { label: "Alpha 2", value: "alpha-2" },
+        { label: "Alpha 1", value: "alpha 1" },
+        { label: "Alpha 2", value: "alpha 2" },
+         { label: "Alpha 4", value: "alpha 4" },
       ],
     },
     {
@@ -75,24 +77,30 @@ export function DeviceForm({
   ];
 
   const defaultValues = {
-    name: "",
-    zone: "",
+    label: "",
+    zone: {
+      name: "",
+    },
     status: DeviceStatus.ONLINE,
   };
 
   const formDefaultValues = values
-    ? {
-        ...defaultValues,
-        ...Object.fromEntries(
-          Object.entries(values).filter(([key]) => key in defaultValues)
-        ),
-      }
-    : {
-        ...defaultValues,
-      };
+  ? {
+      ...defaultValues,
+      ...Object.fromEntries(
+        Object.entries(values).filter(([key]) => key in defaultValues)
+      ),
+      zone: {
+        ...defaultValues.zone,
+        ...(values.zone ?? {}),
+      },
+    }
+  : {
+      ...defaultValues,
+    };
 
   const form = useAppForm({
-    validators: { onSubmit: DeviceSchema },
+    // validators: { onSubmit: DeviceSchema },
     defaultValues: formDefaultValues,
     // onSubmit: async ({ value }) => {
     //   try {

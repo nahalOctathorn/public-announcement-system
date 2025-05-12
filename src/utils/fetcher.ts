@@ -1,6 +1,6 @@
 import { config } from "@/config";
 
-export const STIM_API_URL = config.apiUrl;
+export const BASE_API_URL = config.apiUrl;
 
 
 export const fetcher = async <T>(
@@ -41,10 +41,12 @@ export const apiRequest = async <T>(
   body?: unknown,
   credentials: RequestCredentials | undefined = "include"
 ): Promise<T> => {
-  return fetcher<T>(`${STIM_API_URL}${path}`, {
+  console.log(BASE_API_URL, path);
+  return fetcher<T>(`${BASE_API_URL}${path}`, {
     method,
     headers: {
       "Content-Type": "application/json",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUEFTIEFkbWluIiwiZW1haWwiOiJwYXNAYWRtaW4uY29tIiwiaWF0IjoxNzQ3MDI2ODExLCJleHAiOjE3NDcxMTMyMTF9.IaS6_E43FboBgCzX2BJIxefOzFOuCWAgiFzby6lTjCQ"
     },
     body: body ? JSON.stringify(body) : undefined,
     cache: "no-store",

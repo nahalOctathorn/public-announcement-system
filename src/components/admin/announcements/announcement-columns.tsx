@@ -14,23 +14,27 @@ export const columns = (
   // extraActions: (Announcement: Announcement) => ReactNode
 ): ColumnDef<Announcement>[] => [
     {
-      accessorKey: 'subject',
+      accessorKey: 'name',
       header: 'SUBJECT',
     },
     {
-      accessorKey: 'text_post',
+      accessorKey: 'description',
       header: 'TEXT POST',
     },
     {
       accessorKey: 'devices',
       header: 'DEVICES',
+      cell: ({ row }) => {
+        const devices = row.original.devices;
+        return `${devices.length} devices`;
+      }
     },
     {
-      accessorKey: 'Sounds_file',
+      accessorKey: 'audio.filePath',
       header: 'SOUNDS FILE',
       cell: ({ row }) => {
-        const file = row.original.Sounds_file;
-
+        const file = row.original.audio;
+        console.log("file", file);
         return (
           <div className="flex flex-row items-center gap-4">
             <div>
@@ -41,36 +45,36 @@ export const columns = (
         );
       },
     },
-    {
-      accessorKey: 'zone',
-      header: 'ZONE',
-    },
-    {
-      accessorKey: 'status',
-      header: 'STATUS',
-      cell: ({ row }) => {
-        const initialStatus = row.original.status;
-        const [status, setStatus] = useState(initialStatus);
+    // {
+    //   accessorKey: 'devices.zone.name',
+    //   header: 'ZONE',
+    // },
+    // {
+    //   accessorKey: 'status',
+    //   header: 'STATUS',
+    //   cell: ({ row }) => {
+    //     const initialStatus = row.original.status;
+    //     const [status, setStatus] = useState(initialStatus);
 
-        const isOnline = status === AnnouncementStatus.ONLINE;
+    //     const isOnline = status === AnnouncementStatus.ONLINE;
 
-        return (
-          <div className="flex items-center gap-2">
-            <Switch
-              className="hover:cursor-pointer"
-              checked={isOnline}
-              onCheckedChange={(checked) => {
-                const newStatus = checked ? AnnouncementStatus.ONLINE : AnnouncementStatus.OFFLINE;
-                setStatus(newStatus);
+    //     return (
+    //       <div className="flex items-center gap-2">
+    //         <Switch
+    //           className="hover:cursor-pointer"
+    //           checked={isOnline}
+    //           onCheckedChange={(checked) => {
+    //             const newStatus = checked ? AnnouncementStatus.ONLINE : AnnouncementStatus.OFFLINE;
+    //             setStatus(newStatus);
 
-                // You can call your API/mutation here
-                console.log(`Status: ${newStatus}`);
-              }}
-            />
-          </div>
-        );
-      },
-    },
+    //             // You can call your API/mutation here
+    //             console.log(`Status: ${newStatus}`);
+    //           }}
+    //         />
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       header: "ACTIONS",
       id: "actions",
@@ -81,14 +85,14 @@ export const columns = (
         return (
           <div className="flex space-x-2">
             <Button variant="ghost" size="sm"
-            onClick={() => handleEdit(Announcement.id)}
+              onClick={() => handleEdit(Announcement.id)}
             >
               <SquarePen className="h-4 w-4" />
             </Button>
             <Button
               variant="ghost"
               size="sm"
-            onClick={() => handleDelete(Announcement.id)}
+              onClick={() => handleDelete(Announcement.id)}
             >
               <Trash2 className="h-4 w-4" />
             </Button>

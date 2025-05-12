@@ -1,4 +1,4 @@
-import { CalendarCheck2, MapPin, Play, Radio, Siren, Smartphone } from "lucide-react";
+import { AlarmClock, CalendarCheck2, MapPin, Play, Radio, Siren, Smartphone } from "lucide-react";
 
 import {
   SidebarGroup,
@@ -64,6 +64,11 @@ const navItems: {
     title: "Audios",
     urls: [ADMIN_ROUTES.AUDIOS],
     icon: Play,
+  },
+{
+    title: "Prayer",
+    urls: [ADMIN_ROUTES.Prayer],
+    icon: AlarmClock,
   },
 
   ];
