@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { ZoneTable } from "@/components/admin/zones/zone-table";
 import { ZoneForm } from "@/components/admin/zones/zone-form";
-import { fetchZones } from "@/services/zone.api";
+import { fetchZone, fetchZones } from "@/services/zone.api";
 
 type TableExtraProps = {
 
@@ -20,11 +20,13 @@ export default function Zones() {
         <PageInnerLayout Header={<Header />}>
             <TableHandler<any, any, any, TableExtraProps>
                 queryKey="Zones"
-                 queryFn={(params) => fetchZones(params)}
+                queryFn={(params) => fetchZones(params)}
                 TableComponent={ZoneTable}
                 FormComponent={ZoneForm}
                 initialPage={1}
                 initialLimit={10}
+                queryFnSingle={fetchZone}
+                queryKeySingle={"zone"}
             />
         </PageInnerLayout>
     );

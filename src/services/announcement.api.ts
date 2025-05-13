@@ -4,10 +4,8 @@ import {
     PaginatedResponse,
     ListParamsWithId,
 } from "@/@types/api.type";
-import {
-    Device,
-} from "@/@types/device.type";
 import { Id, MessageResponse } from "@/@types/general.type";
+import { Announcement } from "@/@types/announcement.type";
 
 const ANNOUNCEMENTS_API_PATH = "/announcements";
 
@@ -48,14 +46,14 @@ export const fetchAnnouncements = (
     console.log("queryParams", queryParams.toString());
     console.log(params)
 
-    return apiRequest<PaginatedResponse<Device>>(
+    return apiRequest<PaginatedResponse<Announcement>>(
         `${apiPath}?${queryParams.toString()}`,
         "GET"
     );
 };
 
-// export const fetchDevice = (params: ListParamsWithId) =>
-//   apiRequest<Device>(`${ANNOUNCEMENTS_API_PATH}/${params.id}`, "GET");
+export const fetchAnnouncement = (params: ListParamsWithId) =>
+  apiRequest<Announcement>(`${ANNOUNCEMENTS_API_PATH}/${params.id}`, "GET");
 
 // export const deleteDevice = (id: number) =>
 //   apiRequest<void>(`${ANNOUNCEMENTS_API_PATH}/${id}`, "DELETE");

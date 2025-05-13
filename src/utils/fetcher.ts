@@ -46,7 +46,7 @@ export const apiRequest = async <T>(
     method,
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUEFTIEFkbWluIiwiZW1haWwiOiJwYXNAYWRtaW4uY29tIiwiaWF0IjoxNzQ3MDI2ODExLCJleHAiOjE3NDcxMTMyMTF9.IaS6_E43FboBgCzX2BJIxefOzFOuCWAgiFzby6lTjCQ"
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUEFTIEFkbWluIiwiZW1haWwiOiJwYXNAYWRtaW4uY29tIiwiaWF0IjoxNzQ3MTE1MDU2LCJleHAiOjE3NDcyMDE0NTZ9.7-kadnsTEn70klDEDZIl7mb9j69SrNPE87u7G8oXCmc"
     },
     body: body ? JSON.stringify(body) : undefined,
     cache: "no-store",

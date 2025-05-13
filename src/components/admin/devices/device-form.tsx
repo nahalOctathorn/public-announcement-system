@@ -9,6 +9,7 @@ import { ModalForm } from "@/components/form/modal-form";
 import { Device, DeviceStatus } from "@/@types/device.type";
 import { FormBaseProps } from "@/components/form-handler";
 import { MessageResponse } from "@/@types/general.type";
+import { Zone } from "@/@types/zone.type";
 
 // export const DeviceSchema = z.object({
 //   name: z.string().min(1, {
@@ -27,6 +28,7 @@ type DeviceFormProps = FormBaseProps<any, Device> & {
   closeForm: () => void;
   values?: Device | null;
   isEditMode?: boolean;
+  zones: Zone[];
 };
 
 export function DeviceForm({
@@ -37,8 +39,10 @@ export function DeviceForm({
   closeForm,
   values,
   isEditMode = false,
+  zones,
 }: DeviceFormProps) {
   console.log("DeviceForm", values);
+  console.log("zones", zones);
   const fields: FieldConfig[] = [
     {
       id: "label",
@@ -50,17 +54,16 @@ export function DeviceForm({
     },
     {
       id: "zone",
-      name: "zone.name",
+      name: "zone.id", // This will store the ID instead of the name
       label: "Zone / Location",
-      placeholder: "Alpha",
+      placeholder: "Select a zone",
       type: "select",
       required: true,
       className: "w-full",
-      options: [
-        { label: "Alpha 1", value: "alpha 1" },
-        { label: "Alpha 2", value: "alpha 2" },
-         { label: "Alpha 4", value: "alpha 4" },
-      ],
+      options: zones.map((zone) => ({
+        label: zone.name, // what the user sees
+        value: zone.id.toString(), // unique and stored in form
+      })),
     },
     {
       id: "status",
@@ -79,13 +82,14 @@ export function DeviceForm({
   const defaultValues = {
     label: "",
     zone: {
+      id: "",
       name: "",
     },
     status: DeviceStatus.ONLINE,
   };
 
   const formDefaultValues = values
-  ? {
+    ? {
       ...defaultValues,
       ...Object.fromEntries(
         Object.entries(values).filter(([key]) => key in defaultValues)
@@ -95,7 +99,7 @@ export function DeviceForm({
         ...(values.zone ?? {}),
       },
     }
-  : {
+    : {
       ...defaultValues,
     };
 
@@ -122,7 +126,7 @@ export function DeviceForm({
     //   }
     // },
   });
-  
+
   const closeDeviceForm = () => {
     closeForm();
     form.reset();

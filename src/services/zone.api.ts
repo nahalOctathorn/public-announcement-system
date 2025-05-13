@@ -54,8 +54,9 @@ export const fetchZones = (
     );
 };
 
-// export const fetchDevice = (params: ListParamsWithId) =>
-//   apiRequest<Device>(`${Zones_API_PATH}/${params.id}`, "GET");
+export const fetchZone = (params: ListParamsWithId) =>
+    apiRequest<Zone>(`${Zones_API_PATH}/${params.id}`, "GET");
+
 
 // export const deleteDevice = (id: number) =>
 //   apiRequest<void>(`${Zones_API_PATH}/${id}`, "DELETE");

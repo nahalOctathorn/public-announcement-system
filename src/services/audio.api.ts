@@ -4,10 +4,8 @@ import {
     PaginatedResponse,
     ListParamsWithId,
 } from "@/@types/api.type";
-import {
-    Device,
-} from "@/@types/device.type";
 import { Id, MessageResponse } from "@/@types/general.type";
+import { Audio } from "@/@types/audio.type";
 
 const Audios_API_PATH = "/audio";
 
@@ -48,14 +46,14 @@ export const fetchAudios = (
     console.log("queryParams", queryParams.toString());
     console.log(params)
 
-    return apiRequest<PaginatedResponse<Device>>(
+    return apiRequest<PaginatedResponse<Audio>>(
         `${apiPath}?${queryParams.toString()}`,
         "GET"
     );
 };
 
-// export const fetchDevice = (params: ListParamsWithId) =>
-//   apiRequest<Device>(`${Audios_API_PATH}/${params.id}`, "GET");
+export const fetchAudio = (params: ListParamsWithId) =>
+  apiRequest<Audio>(`${Audios_API_PATH}/${params.id}`, "GET");
 
 // export const deleteDevice = (id: number) =>
 //   apiRequest<void>(`${Audios_API_PATH}/${id}`, "DELETE");

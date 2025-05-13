@@ -6,30 +6,30 @@ import { useAppForm } from "@/components/ui/tanstack-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { ModalForm } from "@/components/form/modal-form";
-import { Audio } from "@/@types/audio.type";
+import { Announcement } from "@/@types/announcement.type";
 import { FormBaseProps } from "@/components/form-handler";
 import { MessageResponse } from "@/@types/general.type";
 
-// export const AudioSchema = z.object({
-//     name: z.string().min(1, {
-//         message: "name is required.",
-//     }),
-//     duration: z.number().min(1, {
-//         message: "duration is required.",
-//     }),
-//     mimType: z.string().min(1, {
-//         message: "mim type is required.",
-//     }),
+// export const PrayerSchema = z.object({
+//   name: z.string().min(1, {
+//     message: "name is required.",
+//   }),
+//   zone: z.string().min(1, {
+//     message: "zone is required.",
+//   }),
+//   status: z.nativeEnum(PrayerStatus, {
+//     errorMap: () => ({ message: "Invalid Prayer status." }),
+//   }),
 // });
 
-type AudioFormProps = FormBaseProps<any, Audio> & {
+type PrayerFormProps = FormBaseProps<any, Announcement> & {
     open: boolean;
     closeForm: () => void;
-    values?: Audio | null;
+    values?: Announcement | null;
     isEditMode?: boolean;
 };
 
-export function AudioForm({
+export function PrayerForm({
     handleSubmit,
     isSubmitting,
     error,
@@ -37,39 +37,71 @@ export function AudioForm({
     closeForm,
     values,
     isEditMode = false,
-}: AudioFormProps) {
+}: PrayerFormProps) {
     const fields: FieldConfig[] = [
         {
             id: "name",
             name: "name",
-            label: "Audio Name",
-            placeholder: "12312",
+            label: "Sound Name",
+            placeholder: "-",
+            type: "text",
+            required: true,
+        },
+         {
+            id: "message",
+            name: "description",
+            label: "Message",
+            placeholder: "-",
             type: "text",
             required: true,
         },
         {
-            id: "duration",
-            name: "duration",
-            label: "Audio Duration",
+            id: "zone",
+            name: "zone.name",
+            label: "Zone / Location",
             placeholder: "Alpha",
-            type: "text",
+            type: "select",
             required: true,
+            className: "w-full",
+            options: [
+                { label: "Alpha 1", value: "alpha-1" },
+                { label: "Alpha 2", value: "alpha-2" },
+                { label: "Alpha 4", value: "alpha-4" },
+            ],
         },
         {
-            id: "mimeType",
-            name: "mimeType",
-            label: "Audio Mime Type",
-            placeholder: "Alpha",
-            type: "text",
+            id: "device",
+            name: "device",
+            label: "Assign Device",
+            placeholder: "-",
+            type: "select",
             required: true,
+            className: "w-full",
+            options: [
+                { label: "Device 1", value: "device-1" },
+                { label: "Device 2", value: "device-2" },
+            ],
+        },
+        {
+            id: "status",
+            name: "status",
+            label: "Select Status",
+            type: "select",
+            required: true,
+            className: "w-full",
+            options: [
+                { label: "Online", value: "online" },
+                { label: "Offline", value: "offline" },
+            ],
         },
     ];
 
     const defaultValues = {
         name: "",
-        duration: 0,
-        mimeType: "",
+        description: "",
+        status: "",
     };
+
 
     const formDefaultValues = values
         ? {
@@ -77,13 +109,17 @@ export function AudioForm({
             ...Object.fromEntries(
                 Object.entries(values).filter(([key]) => key in defaultValues)
             ),
+            //   zone: {
+            //     ...defaultValues.zone,
+            //     ...(values.zone ?? {}),
+            //   },
         }
         : {
             ...defaultValues,
         };
 
     const form = useAppForm({
-        // validators: { onSubmit: AudioSchema },
+        // validators: { onSubmit: PrayerSchema },
         defaultValues: formDefaultValues,
         // onSubmit: async ({ value }) => {
         //   try {
@@ -92,27 +128,27 @@ export function AudioForm({
         //     const { message } = res as MessageResponse;
 
         //     toast.success(
-        //       message || `Audio ${isEditMode ? "updated" : "added"} successfully`
+        //       message || `Prayer ${isEditMode ? "updated" : "added"} successfully`
         //     );
 
-        //     closeAudioForm();
+        //     closePrayerForm();
         //   } catch (err: any) {
         //     const message =
         //       typeof err === "string" ? err : err?.message || "Please try again";
         //     toast.error(
-        //       `Error ${isEditMode ? "updating" : "adding"} Audio: ${message}`
+        //       `Error ${isEditMode ? "updating" : "adding"} Prayer: ${message}`
         //     );
         //   }
         // },
     });
 
-    const closeAudioForm = () => {
+    const closePrayerForm = () => {
         closeForm();
         form.reset();
     };
 
     const onOpenChange = (state: boolean) => {
-        if (state === false) closeAudioForm();
+        if (state === false) closePrayerForm();
     };
 
     const { inputs } = useInput({
@@ -122,8 +158,8 @@ export function AudioForm({
 
     return (
         <ModalForm
-            title={`${isEditMode ? "Edit" : "Add"} Audio`}
-            description={`${isEditMode ? "Edit" : "Add a new"} Audio to NASTP`}
+            title={`${isEditMode ? "Edit" : "Add"} Prayer`}
+            description={`${isEditMode ? "Edit" : "Add a new"} Prayer to NASTP`}
             form={form}
             loading={isSubmitting}
             error={error}
@@ -135,7 +171,7 @@ export function AudioForm({
                         variant="secondary"
                         onClick={(e) => {
                             e.preventDefault();
-                            closeAudioForm();
+                            closePrayerForm();
                         }}
                     >
                         Cancel

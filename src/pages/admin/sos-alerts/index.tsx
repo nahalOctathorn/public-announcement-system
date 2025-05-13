@@ -6,7 +6,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { AnnouncementTable } from "@/components/admin/announcements/announcement-table";
 import { DeviceForm } from "@/components/admin/devices/device-form";
-import { fetchAnnouncements } from "@/services/announcement.api";
+import { fetchAnnouncement, fetchAnnouncements } from "@/services/announcement.api";
+import { SosAlertForm } from "@/components/admin/sos_alerts/sos_alert-form";
 
 type TableExtraProps = {
 
@@ -31,9 +32,11 @@ export default function SOSAlerts() {
                 }}
 
                 TableComponent={AnnouncementTable}
-                FormComponent={DeviceForm}
+                FormComponent={SosAlertForm}
                 initialPage={1}
                 initialLimit={10}
+                queryFnSingle={fetchAnnouncement}
+                queryKeySingle={"announcement"}
             />
         </PageInnerLayout>
     );

@@ -5,8 +5,8 @@ import { PUBLIC_ROUTES } from "@/config/routes.config";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { AnnouncementTable } from "@/components/admin/announcements/announcement-table";
-import { DeviceForm } from "@/components/admin/devices/device-form";
-import { fetchAnnouncements } from "@/services/announcement.api";
+import { fetchAnnouncement, fetchAnnouncements } from "@/services/announcement.api";
+import { PrayerForm } from "@/components/admin/prayers/prayer-form";
 
 type TableExtraProps = {
 
@@ -29,12 +29,14 @@ export default function Prayers() {
                         ...data,
                         data: data.data.filter((item: any) => item.type === "PRAYER"),
                     };
-                    
+
                 }}
                 TableComponent={AnnouncementTable}
-                FormComponent={DeviceForm}
+                FormComponent={PrayerForm}
                 initialPage={1}
                 initialLimit={10}
+                queryFnSingle={fetchAnnouncement}
+                queryKeySingle={"announcement"}
             />
         </PageInnerLayout>
     );
